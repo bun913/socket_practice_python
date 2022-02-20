@@ -8,7 +8,7 @@ import socket
 from abc import ABCMeta, abstractmethod
 
 
-class AbstractClient(ABCMeta):
+class AbstractClient(metaclass=ABCMeta):
     """AbstractClient
     ソケット通信におけるクライアント側の抽象基底クラス
 
@@ -24,7 +24,7 @@ class AbstractClient(ABCMeta):
 
     @abstractmethod
     def _setting(self) -> None:
-        client = socket.socket()
+        client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.client = client
 
     def connect(self) -> None:
@@ -34,7 +34,7 @@ class AbstractClient(ABCMeta):
             host (str): ホスト名
             port (str): ポート番号
         """
-        self.client.connect(self.host, self.port)
+        self.client.connect((self.host, self.port))
 
     def close(self) -> None:
         """close connection
