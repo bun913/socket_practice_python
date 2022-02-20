@@ -1,6 +1,7 @@
 import sys
 
 from tcp.ip4_sever import TcpIPv4Server
+from tcp.ip6_server import TcpIPv6Server
 
 if __name__ == "__main__":
     #　第１引数に ipv4 または ipv6を指定
@@ -13,6 +14,5 @@ if __name__ == "__main__":
 
     server = TcpIPv4Server()
     if ip_family == "ipv6":
-        #TOOD: ipv6用のクラスをセットする
-        pass
+        server = TcpIPv6Server()
     server.listen()
